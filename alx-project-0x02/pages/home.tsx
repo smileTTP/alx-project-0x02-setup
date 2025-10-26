@@ -1,13 +1,22 @@
 import Header from "@/components/layout/Header";
 import Card from "@/components/common/Card";
-import { CardProps } from "@/interfaces";
+import { CardProps, PostData } from "@/interfaces";
 import { useState } from "react";
+import PostModal from "@/components/common/PostModal";
 
 const Home: React.FC = () => {
-    const [posts, setPosts] = useState<CardProps[]>([
+    const [posts, setPost] = useState<CardProps[]>([
         {title: "Card no.1", content: "Those who carried the past carried the dead, and those who chased the future died of cardiac arrest."}, 
         {title: "Card no.2", content: "What is the point of shrouding yourself in silence? The grave will do that for you for all eternity."}
     ]);
+    const [isModalOpen, setModalOpen] = useState(false);
+    const handleAddPost = (newPost: PostData) => {
+        setPost(prevPosts => [
+            ...prevPosts, 
+            { ...newPost, id: prevPosts.length + 1 } 
+        ]);
+    };
+
     return (
         <div>
             <Header/>
@@ -21,6 +30,9 @@ const Home: React.FC = () => {
                 ))}
                 </div>
             </main>
+            {isModalOpen && (
+        <PostModal onClose={() => setModalOpen(false)} onSubmit={handleAddPost} />
+        )}
         </div>
     );
 }

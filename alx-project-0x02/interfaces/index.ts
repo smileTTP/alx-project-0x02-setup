@@ -3,6 +3,8 @@ export interface CardProps {
     content: string;
 }
 export interface PostData {
+    id: number,
+    userID: number,
     title: string;
     content: string;
 }
