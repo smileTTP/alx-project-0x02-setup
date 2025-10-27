@@ -12,6 +12,9 @@ const Header: React.FC = () => {
             <li className="hover:underline">
                 <Link href="/home">Home</Link>
             </li>
+            <li className="hover:underline">
+                <Link href="/posts">Posts</Link>
+            </li>
             </ul>
         </nav>
         </div>
